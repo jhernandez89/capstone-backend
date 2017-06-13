@@ -4,7 +4,7 @@ exports.seed = function (knex, Promise) {
   return knex('type').del()
     .then(() =>
       // Inserts seed entries
-       knex('table_name').insert([
+       knex('type').insert([
         { id: 1, type: 'Interview' },
         { id: 4, type: 'Ethnography' },
         { id: 5, type: 'Case Study' },

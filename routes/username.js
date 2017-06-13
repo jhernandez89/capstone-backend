@@ -6,16 +6,28 @@ const log4js = require('log4js');
 
 const logger = log4js.getLogger();
 
+// router.get('/', (req, res) => {
+//   knex('username')
+//   .select()
+//   .then((result) => {
+//     console.log(result);
+//     res.json(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
+// });
+
 router.get('/', (req, res) => {
-  knex('username')
-  .select()
-  .then((result) => {
-    console.log(result);
-    res.json(result);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  if (req.session.userId) {
+    return knex('users')
+    .select()
+    .where('id', req.params.userId)
+    .then(([result]) => {
+      res.json(result);
+    });
+  }
+  return res.status(401).send('not logged in');
 });
 
 router.get('/:id', (req, res) => {

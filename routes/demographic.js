@@ -1,40 +1,30 @@
-const express = require('express')
+const express = require('express');
 const router = require('express').Router();
 const knex = require('../db/knex');
 //
-router.get('/', function(req, res) {
-  knex('venue')
+router.get('/', (req, res) => {
+  knex('demographic')
   .select()
-  .then(function (result) {
+  .then((result) => {
     res.json(result);
-  })
+  });
+});
+router.get('/:id', (req, res) => {
+  knex('demographic')
+  .select()
+  .where('demographic.username_id', req.params.Userid)
+  .then((result) => {
+    res.json(result);
+  });
 });
 //
-// router.get('/room/:id', function(req, res) {
-//   knex('venue')
-//   .select()
-//   .where('venue.id', req.params.id)
-//   .then(function (result) {
-//     res.json(result);
-//   })
-// })
-//
-// router.get('/:id', function(req, res) {
-//   knex('venue')
-//   .select()
-//   .where('venue.id', req.params.id)
-//   .then(function (result) {
-//     res.json(result);
-//   })
-// })
-//
-router.post('/', function(req, res){
-console.log(req.body);
+router.post('/', (req, res) => {
+  console.log(req.body);
   knex('demographic').insert({
     age: req.body.age,
     school: req.body.school,
     gender: req.body.gender,
-  }, 'id').then(function(result){
+  }, 'id').then((result) => {
     res.json(result);
   });
 });

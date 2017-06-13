@@ -9,6 +9,9 @@ const session = require('express-session');
 
 const index = require('./routes/index');
 const user = require('./routes/username');
+const type = require('./routes/type');
+const interview = require('./routes/interview');
+const project = require('./routes/project');
 
 const app = express();
 
@@ -28,6 +31,9 @@ app.use(cookieParser());
 
 app.use('/', index);
 app.use('/username', user);
+app.use('/type', type);
+app.use('/interview', interview);
+app.use('/project', project);
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;

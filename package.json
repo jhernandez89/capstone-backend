@@ -15,6 +15,7 @@
     "express-session": "^1.15.2",
     "fs": "0.0.1-security",
     "knex": "^0.12.9",
+    "log4js": "^1.1.1",
     "morgan": "~1.7.0",
     "nodemailer": "^4.0.1",
     "nodemon": "^1.11.0",

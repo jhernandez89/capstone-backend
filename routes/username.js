@@ -2,6 +2,9 @@ const express = require('express');
 const router = require('express').Router();
 const knex = require('../db/knex');
 const bcrypt = require('bcrypt');
+const log4js = require('log4js');
+
+const logger = log4js.getLogger();
 
 router.get('/', (req, res) => {
   knex('username')
@@ -68,9 +71,10 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log(req.body);
   knex('username').insert({
-    first_name: req.body.firstName,
-    last_name: req.body.lastName,
+    first_name: req.body.first_name,
+    last_name: req.body.last_name,
     email: req.body.email,
     tip: req.body.tip,
     username: req.body.username,
@@ -86,9 +90,12 @@ router.post('/', (req, res) => {
       req.session.userId = id;
     }))
   .then(() => {
-    res.status(201).send('OK');
+    res.status(201).send(req.body);
   })
-  .catch(error => res.status(403).send(error.message));
+  .catch((error) => {
+    res.status(403).send(error.message);
+    logger.error(error);
+  });
 });
 
 router.patch('/', (req, res) => {

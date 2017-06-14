@@ -6,7 +6,7 @@ exports.seed = function (knex, Promise) {
       // Inserts seed entries
        knex('type').insert([
         { id: 1, type: 'Interview' },
-        { id: 4, type: 'Ethnography' },
-        { id: 5, type: 'Case Study' },
+        { id: 2, type: 'Ethnography' },
+        { id: 3, type: 'Case Study' },
        ]));
 };

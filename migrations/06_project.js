@@ -4,6 +4,9 @@ exports.up = function (knex, Promise) {
     table.string('name');
     table.integer('type_id');
     table.integer('sub_type_id');
+    table.integer('username_id')
+      .references('username.id')
+      .onDelete('CASCADE');
   });
 };
 

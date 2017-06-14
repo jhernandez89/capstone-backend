@@ -19,7 +19,6 @@ router.get('/:id', (req, res) => {
 });
 //
 router.post('/', (req, res) => {
-  console.log(req.body);
   knex('demographic').insert({
     age: req.body.age,
     school: req.body.school,
